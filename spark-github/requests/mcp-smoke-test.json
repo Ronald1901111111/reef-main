@@ -1,0 +1,5 @@
+{
+  "type": "mcp_smoke_test",
+  "status": "ok",
+  "purpose": "Verify Gemini Spark GitHub MCP write access"
+}
