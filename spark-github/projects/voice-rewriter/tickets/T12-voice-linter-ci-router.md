@@ -8,7 +8,7 @@
 ---
 
 ## Objetivo
-Implementar o validador mecânico em Python, o workflow do GitHub Actions disparado por push em `candidates/` e o roteador determinístico de resultado que avança o job sem envolver IA, registrando permissões mínimas e protegendo contra loops de execução.
+Implementar o validador mecânico em Python, o workflow do GitHub Actions disparado por push em `candidates/` e o roteador determinístico de resultado que avança o job sem envolver IA, registrando permissões mínimas, consumindo o bundle versionado congelado no job e protegendo contra loops de execução.
 
 ## Arquivos que Cria ou Modifica
 * `src/validator/voice_linter.py`
@@ -21,14 +21,15 @@ Implementar o validador mecânico em Python, o workflow do GitHub Actions dispar
 * Ticket 01, Ticket 03.
 
 ## Entradas
-* `candidate_<job_id>_vX.md` + bundle versionado (`voice_profile.yaml`).
+* `candidate_<job_id>_vX.md` + bundle versionado congelado no job (`voice_profile.yaml`).
 
 ## Saídas
 * `lint_reports/lint_<job_id>_vX.json` e job enfileirado na próxima fila correspondente.
 
 ## Critérios de Aceite
 - [ ] O workflow do GitHub Actions reage exclusivamente a `projects/voice-rewriter/candidates/**` (nunca a `lint_reports/**`), evitando recursão.
-- [ ] Utiliza permissões mínimas no workflow (`contents: write`).
+- [ ] Documenta e utiliza permissões mínimas necessárias no workflow (`contents: write`).
+- [ ] Consome exatamente o `voice_model_bundle_path` congelado no job, nunca uma versão "latest".
 - [ ] Reprova imediatamente se encontrar termos de `explicitly_forbidden_terms` ou frases $> 24$ palavras.
 - [ ] Emite apenas warning para `statistically_unobserved_terms` sem falhar o status `PASSED`.
 - [ ] Preserva no relatório: `job_id`, `candidate_version` e `voice_model_version`.

@@ -8,7 +8,7 @@
 ---
 
 ## Objetivo
-Implementar o worker avaliador que afere formalmente a matriz de Voice Similarity, comparando o candidato contra o Voice Profile e contra os roteiros reais do manifesto de calibração congelado no job, aplicando as regras de veto.
+Implementar o worker avaliador que afere formalmente a matriz de Voice Similarity, comparando o candidato contra o Voice Profile e contra os roteiros reais do manifesto de calibração congelado no job, aplicando as regras de veto e garantindo reprodutibilidade das avaliações entre iterações.
 
 ## Arquivos que Cria ou Modifica
 * `schemas/evaluation.schema.json`
@@ -19,13 +19,13 @@ Implementar o worker avaliador que afere formalmente a matriz de Voice Similarit
 * Ticket 04 (Manifesto de calibração), Ticket 07 (Bundle congelado), Ticket 12 (CI report), Ticket 13 (Review report).
 
 ## Entradas
-* Candidato, `voice_profile.yaml`, referências listadas no `calibration_manifest_path`, `review.md`, `lint_report.json`.
+* Candidato, `voice_profile.yaml`, referências listadas no `calibration_manifest_path` congelado, `review.md`, `lint_report.json`.
 
 ## Saídas
 * Relatório de avaliação estruturado e job enfileirado em `queues/controller/` com estado `EVALUATED`.
 
 ## Critérios de Aceite
-- [ ] Utiliza estritamente os arquivos do `calibration_manifest_path` congelado no job, garantindo reprodutibilidade das avaliações entre iterações.
+- [ ] Utiliza estritamente os arquivos do `calibration_manifest_path` congelado no job, garantindo que `candidate_v1`, `v2`, `v3` sejam avaliados contra o mesmo baseline idêntico.
 - [ ] Pondera maior peso no vocabulário funcional e estilístico (conectores, sintaxe, ritmo), neutralizando o vocabulário temático técnico do assunto.
 - [ ] Veto Gates obrigatórios: reprova se `factual_fidelity < 9.5` ou `source_style_contamination > 2.0`.
 - [ ] Emite pontuações individuais para as dimensões estilísticas e a decisão recomendada.

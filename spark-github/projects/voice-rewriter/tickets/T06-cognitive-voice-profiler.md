@@ -28,9 +28,10 @@ Definir os schemas e as diretrizes operacionais do worker Spark responsável por
 
 ## Critérios de Aceite
 - [ ] Estratifica vocabulário em: `characteristic_terms`, `observed_terms`, `rare_terms`, `statistically_unobserved_terms` e `explicitly_forbidden_terms`.
-- [ ] `explicitly_forbidden_terms` é preenchido exclusivamente a partir de decisão humana explícita em `profile_overrides.yaml` (ausência estatística nunca vira veto automático).
+- [ ] `explicitly_forbidden_terms` é preenchido exclusivamente a partir de decisão humana explícita em `profile_overrides.yaml` (ausência estatística nunca vira veto automático). O Profiler pode sugerir termos, mas eles só entram em `explicitly_forbidden_terms` com aprovação humana.
 - [ ] Padrões retóricos (hooks, transições, perguntas, CTAs) incluem `confidence` (0.0 a 1.0) e `supporting_transcripts` ($\ge 1$).
-- [ ] Seleciona cognitivamente as amostras para `curated_samples_manifest.json`, classificando por categoria (`hook`, `technical_explanation`, `transition`, `analogy`, `argumentation`, `cta`, `closing`) com justificativa retórica e confiança.
+- [ ] Seleciona e justifica cognitivamente as amostras para `curated_samples_manifest.json`, classificando por categoria (`hook`, `technical_explanation`, `transition`, `analogy`, `argumentation`, `cta`, `closing`) com justificativa retórica e confiança.
+- [ ] O conjunto `calibration/` permanece estritamente inacessível para o Cognitive Voice Profiler.
 
 ## Testes Necessários
 * `tests/test_cognitive_profiler_contracts.py`:

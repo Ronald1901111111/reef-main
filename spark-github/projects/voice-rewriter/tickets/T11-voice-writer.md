@@ -8,7 +8,7 @@
 ---
 
 ## Objetivo
-Implementar o worker de escrita que consome exclusivamente o outline semântico e o Voice Model Bundle congelado no job para produzir o roteiro novo do zero em Blocos de Produção, mantendo estrita cegueira em relação à transcrição externa.
+Implementar o worker de escrita que consome exclusivamente o outline semântico e o Voice Model Bundle congelado no job para produzir o roteiro novo do zero em Blocos de Produção, mantendo estrita cegueira em relação à transcrição externa e preservando as referências congeladas do job.
 
 ## Arquivos que Cria ou Modifica
 * `src/writer/voice_writer_task.md`
@@ -27,7 +27,7 @@ Implementar o worker de escrita que consome exclusivamente o outline semântico 
 - [ ] O worker rejeita a execução se receber qualquer referência ou caminho a `source_material/`.
 - [ ] Estrutura o roteiro em Blocos de Produção (Hook, Desenvolvimento, Transições, CTA) com anotações de cadência (`[PAUSA]`, `[ÊNFASE]`) e notas visuais concisas.
 - [ ] Persiste o candidato versionado no repositório (`_v1.md`, `_v2.md`).
-- [ ] Mantém congelados os caminhos do bundle e do manifesto de calibração no estado global do job.
+- [ ] Preserva e não altera os valores congelados de `voice_model_bundle_path` e `calibration_manifest_path` no job.
 
 ## Testes Necessários
 * `tests/test_voice_writer_security.py`:

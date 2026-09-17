@@ -8,7 +8,7 @@
 ---
 
 ## Objetivo
-Implementar o compilador determinístico que consome a seleção cognitiva do Ticket 06, valida o manifesto de amostras, compila o `voice_prompt.md` e empacota o Voice Model Bundle como um diretório versionado e imutável protegido por hashes.
+Implementar o compilador determinístico que consome a seleção cognitiva do Ticket 06, valida o manifesto de amostras, compila o `voice_prompt.md` e empacota o Voice Model Bundle como um diretório versionado e imutável protegido por hashes criptográficos em `bundle_manifest.json`.
 
 ## Arquivos que Cria ou Modifica
 * `src/profiler/bundle_compiler.py`
@@ -25,10 +25,10 @@ Implementar o compilador determinístico que consome a seleção cognitiva do Ti
 * Bundle imutável versionado (ex: `versions/v2.0.0/`) contendo: `raw_metrics.json`, `voice_analysis.json`, `voice_profile.yaml`, `voice_prompt.md`, `curated_samples/` e `bundle_manifest.json`.
 
 ## Critérios de Aceite
-- [ ] `bundle_manifest.json` calcula hashes SHA-256 de todos os artefatos internos (`profile_hash`, `analysis_hash`, `prompt_hash`, `samples_manifest_hash`, `raw_metrics_hash`).
+- [ ] `bundle_manifest.json` calcula hashes SHA-256 de todos os artefatos internos (`bundle_version`, `created_at`, `profile_hash`, `analysis_hash`, `prompt_hash`, `samples_manifest_hash`, `raw_metrics_hash`).
 - [ ] O compilador recusa terminantemente sobrescrever uma versão existente em `versions/<semver>/`, exigindo novo incremento SemVer.
-- [ ] O compilador não toma decisões estilísticas: apenas empacota os trechos autorizados pelo manifest e compila deterministicamente o prompt.
-- [ ] Nenhuma amostra em `curated_samples/` tem proveniência fora do conjunto de treino.
+- [ ] O compilador não toma decisões cognitivas: valida deterministicamente o manifest, empacota os trechos autorizados e compila o `voice_prompt.md`.
+- [ ] Nenhuma amostra em `curated_samples/` tem proveniência fora do conjunto de treino (isolamento estrito de `calibration/`).
 
 ## Testes Necessários
 * `tests/test_bundle_compiler.py`:

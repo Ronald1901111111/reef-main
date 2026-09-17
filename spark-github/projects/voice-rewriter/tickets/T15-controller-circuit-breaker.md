@@ -8,7 +8,7 @@
 ---
 
 ## Objetivo
-Implementar o worker de controle que interpreta os relatórios de avaliação e linter, gerenciando as iterações de escrita, a interrupção segura por Circuit Breaker ou o avanço para aprovação humana.
+Implementar o worker de controle que interpreta os relatórios de avaliação e linter, gerenciando as iterações de escrita, a preservação dos caminhos congelados do bundle e calibração, a interrupção segura por Circuit Breaker ou o avanço para aprovação humana.
 
 ## Arquivos que Cria ou Modifica
 * `src/controller/controller_task.md`
@@ -28,11 +28,11 @@ Implementar o worker de controle que interpreta os relatórios de avaliação e 
 - [ ] Circuit Breaker estrito: se `iteration >= 5` ou `failure_count >= 3`, transita obrigatoriamente para `NEEDS_HUMAN_REVIEW` e suspende o avanço automático.
 - [ ] Se aprovado na avaliação ($\ge 8.5$ sem vetos), transita para `READY_FOR_HUMAN_APPROVAL`.
 - [ ] Em caso de re-iteração, anexa as instruções do Evaluator ao payload do Voice Writer incrementando `iteration`.
-- [ ] Preserva a imutabilidade do `voice_model_bundle_path` e do `calibration_manifest_path` durante toda a vida do job.
+- [ ] Garante que `voice_model_bundle_path` e `calibration_manifest_path` permanecem imutáveis em todas as iterações do job.
 
 ## Testes Necessários
 * `tests/test_controller_circuit_breaker.py`:
-  * Interrupção quando `iteration == 5` ou `failure_count == 3`.
+  * Interrupção quando `iteration >= 5` ou `failure_count >= 3`.
   * Transição correta para aprovação humana quando o score satisfaz os critérios.
 
 ## Definition of Done
