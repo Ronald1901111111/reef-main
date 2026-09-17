@@ -6,17 +6,14 @@ import jsonschema
 from jsonschema import validate, ValidationError
 
 REPO_ROOT = Path(__file__).parent.parent
+SCHEMAS_DIR = REPO_ROOT / "schemas"
 
 def load_schema(schema_name):
-    paths = [
-        REPO_ROOT / "schemas" / schema_name,
-        REPO_ROOT / "spark-github" / "projects" / "voice-rewriter" / "schemas" / schema_name
-    ]
-    for p in paths:
-        if p.exists():
-            with open(p, "r", encoding="utf-8") as f:
-                return json.load(f)
-    raise FileNotFoundError(f"Schema {schema_name} not found in {[str(p) for p in paths]}")
+    schema_path = SCHEMAS_DIR / schema_name
+    if schema_path.exists():
+        with open(schema_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    raise FileNotFoundError(f"Canonical schema {schema_name} not found at {schema_path}")
 
 
 class TestJobStateSchema(unittest.TestCase):

@@ -8,13 +8,11 @@
 ---
 
 ## Objetivo
-Criar a estrutura base de diretórios no repositório e formalizar os contratos de schema JSON separando estritamente o **Queue Lifecycle** (vida útil do worker na fila) do **Job Lifecycle** (estado global da reescrita do roteiro), além de suportar referências congeladas de bundle e calibração.
+Criar a estrutura base de diretórios no repositório e formalizar os contratos de schema JSON canônicos separando estritamente o **Queue Lifecycle** (vida útil do worker na fila) do **Job Lifecycle** (estado global da reescrita do roteiro), além de suportar referências congeladas de bundle e calibração.
 
 ## Arquivos que Cria ou Modifica
-* `schemas/job_state.schema.json`
-* `schemas/queue_envelope.schema.json`
-* `spark-github/projects/voice-rewriter/schemas/job_state.schema.json`
-* `spark-github/projects/voice-rewriter/schemas/queue_envelope.schema.json`
+* `schemas/job_state.schema.json` (Fonte canônica única)
+* `schemas/queue_envelope.schema.json` (Fonte canônica única)
 * `tests/test_schemas_foundation.py`
 * Pastas com `.gitkeep`:
   * `spark-github/queues/ingestion/.gitkeep`
@@ -41,6 +39,7 @@ Criar a estrutura base de diretórios no repositório e formalizar os contratos 
 - [x] `job_state.schema.json` formaliza todos os 18 estados do Job Lifecycle: `WAITING_FOR_TRANSCRIPT`, `SEMANTIC_EXTRACTION_PENDING`, `SEMANTIC_EXTRACTION_COMPLETED`, `WRITING_PENDING`, `CANDIDATE_GENERATED`, `CI_PENDING`, `CI_PASSED`, `CI_FAILED`, `REVIEW_PENDING`, `REVIEW_COMPLETED`, `EVALUATION_PENDING`, `EVALUATED`, `ITERATING`, `NEEDS_HUMAN_REVIEW`, `READY_FOR_HUMAN_APPROVAL`, `APPROVED_BY_HUMAN`, `PROMOTED`, `FAILED`.
 - [x] O estado `PROMOTED` é o único estado terminal de sucesso global.
 - [x] `job_state.schema.json` prevê os campos imutáveis: `voice_model_bundle_path` e `calibration_manifest_path`.
+- [x] Unicidade de fonte: os schemas residem exclusivamente na pasta canônica `schemas/`, sem espelhamento duplicado.
 
 ## Testes Necessários
 * `tests/test_schemas_foundation.py`:
@@ -50,4 +49,4 @@ Criar a estrutura base de diretórios no repositório e formalizar os contratos 
   * Rejeitar estados inválidos ou contaminação entre QueueState e JobState.
 
 ## Definition of Done
-Todos os schemas validados com ferramenta de teste de schema JSON (`pytest tests/test_schemas_foundation.py -v`) com 100% de aprovação e diretórios comitados no repositório na branch `feature/voice-rewriter-t01-foundation`.
+Todos os schemas canônicos validados com ferramenta de teste de schema JSON (`pytest tests/test_schemas_foundation.py -v`) com 100% de aprovação e diretórios comitados no repositório na branch `feature/voice-rewriter-t01-foundation`.
