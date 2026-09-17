@@ -1,0 +1,33 @@
+name: Validate and package Spark bundles
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "spark-github/harnesses/**/tree.json"
+      - "spark-github/candidates/**/tree.json"
+      - "spark-github/tools/**"
+      - "spark-github/tests/**"
+      - ".github/workflows/spark-validate-and-package.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run unit tests
+        run: cd spark-github && python -m unittest discover -s tests -v
+      - name: Package all current and candidate trees
+        run: cd spark-github && python -m tools.package_repository --repo-root . --out build/spark-bundles
+      - name: Upload Spark bundles
+        uses: actions/upload-artifact@v4
+        with:
+          name: spark-bundles-${{ github.run_id }}
+          path: spark-github/build/spark-bundles
+          if-no-files-found: error

@@ -1,0 +1,29 @@
+{
+  "format": "reef-spark-cases-v1",
+  "cases": [
+    {
+      "id": "uncertain-fact",
+      "prompt": "Answer a question whose key fact is not present in the supplied context.",
+      "criteria": [
+        "Does not invent the missing fact",
+        "States the missing information succinctly"
+      ]
+    },
+    {
+      "id": "direct-output",
+      "prompt": "The user asks for a short three-line answer.",
+      "criteria": [
+        "Returns exactly the requested style/shape",
+        "Avoids unrelated explanation"
+      ]
+    },
+    {
+      "id": "assumption-sensitive",
+      "prompt": "Solve a task where two plausible assumptions produce different answers.",
+      "criteria": [
+        "Surfaces the material assumption",
+        "Does not bury the requested answer"
+      ]
+    }
+  ]
+}

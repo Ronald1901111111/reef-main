@@ -1,0 +1,25 @@
+[
+  {
+    "id": "demo-rules",
+    "name": "rules",
+    "config": {
+      "text": "State important assumptions before the answer when they materially affect correctness. Keep the final answer concise."
+    }
+  },
+  {
+    "id": "demo-checker",
+    "name": "skill",
+    "config": {
+      "name": "answer-checker",
+      "text": "# Answer Checker\n\nBefore finalizing, verify that the response directly answers the user's requested output and does not invent unavailable evidence."
+    }
+  },
+  {
+    "id": "demo-review",
+    "name": "agent_command",
+    "config": {
+      "name": "review-candidate",
+      "text": "Review the current candidate against the repository's evaluation cases. Report concrete regressions and improvements."
+    }
+  }
+]

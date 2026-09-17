@@ -1,0 +1,59 @@
+name: Promote evaluated candidate
+
+on:
+  workflow_dispatch:
+    inputs:
+      harness:
+        description: Harness name under harnesses/
+        required: true
+        type: string
+      candidate_id:
+        description: Candidate id under candidates/<harness>/
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run tests before promotion
+        run: python -m unittest discover -s tests -v
+      - name: Promote only an approved evaluation
+        env:
+          HARNESS: ${{ inputs.harness }}
+          CANDIDATE_ID: ${{ inputs.candidate_id }}
+          RELEASE_ID: gh-${{ github.run_id }}
+        run: |
+          python -m tools.promote_candidate \
+            --repo-root . \
+            --harness "$HARNESS" \
+            --candidate-id "$CANDIDATE_ID" \
+            --evaluation "evaluations/$HARNESS/results/$CANDIDATE_ID.json" \
+            --release-id "$RELEASE_ID"
+      - name: Package promoted harness
+        run: python -m tools.package_repository --repo-root . --out build/spark-bundles
+      - name: Commit promotion
+        env:
+          HARNESS: ${{ inputs.harness }}
+          CANDIDATE_ID: ${{ inputs.candidate_id }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add harnesses releases
+          git commit -m "promote: $HARNESS candidate $CANDIDATE_ID"
+          git push
+      - name: Upload promoted Spark bundles
+        uses: actions/upload-artifact@v4
+        with:
+          name: promoted-spark-bundles-${{ github.run_id }}
+          path: build/spark-bundles
+          if-no-files-found: error
