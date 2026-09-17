@@ -1,9 +1,8 @@
 # Índice Geral de Tickets: Voice-Rewriter
 
 **Projeto:** Voice-Rewriter (Subprojeto do REEF)  
-**Status Geral:** `APPROVED` (Pronto para início de implementação)  
+**Status Geral:** `IN_PROGRESS` (Ticket 01 concluído; aguardando autorização para Ticket 02)  
 **Total de Tickets:** 18  
-**Estado Inicial de Todos os Tickets:** `NOT_STARTED`  
 
 ---
 
@@ -11,7 +10,7 @@
 
 | Ticket | Título | Fase | Worker Responsável | Bloqueado por | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **[T01](./T01-foundation-structure-schemas.md)** | Estrutura de Diretórios e Schemas de Estado e Filas | FASE 0 | Foundation | Nenhum | `NOT_STARTED` |
+| **[T01](./T01-foundation-structure-schemas.md)** | Estrutura de Diretórios e Schemas de Estado e Filas | FASE 0 | Foundation | Nenhum | `DONE` |
 | **[T02](./T02-queue-manager-worker-runtime.md)** | Queue Manager, Contrato Operacional e Menor Acesso | FASE 0 | Foundation | T01 | `NOT_STARTED` |
 | **[T03](./T03-state-machine-core.md)** | State Machine Core | FASE 0 | Foundation | T01 | `NOT_STARTED` |
 | **[T04](./T04-corpus-provenance-splits.md)** | Proveniência do Corpus e Isolamento Training/Calibration | FASE 1 | Data Prep | T01 | `NOT_STARTED` |

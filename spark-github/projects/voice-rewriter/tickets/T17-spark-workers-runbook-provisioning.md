@@ -8,7 +8,7 @@
 ---
 
 ## Objetivo
-Documentar a configuração operacional de cada um dos workers como Tasks/Schedules independentes no Gemini Spark, registrando seus contratos de runtime, filas monitoradas, permissões e testes de fumaça.
+Documentar a configuração operacional de cada um dos workers como Tasks/Schedules independentes no Gemini Spark, registrando seus contratos de runtime, filas monitoradas, permissões e testes de fumaça, incluindo explicitamente o Ingestion Worker com suporte a URL.
 
 ## Arquivos que Cria ou Modifica
 * `docs/SPARK_WORKERS_RUNBOOK.md`
