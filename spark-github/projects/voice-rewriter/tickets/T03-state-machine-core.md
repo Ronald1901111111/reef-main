@@ -1,7 +1,7 @@
 # Ticket 03 — State Machine Core
 
 **Fase:** FASE 0 — Fundação e Governança  
-**Status:** `NOT_STARTED`  
+**Status:** `DONE`  
 **Bloqueado por:** Ticket 01  
 **Worker Responsável:** Foundation  
 
@@ -24,10 +24,10 @@ Criar o autômato de estados formal que declara, valida e aplica todas as transi
 * Funções: `can_transition(current, target)`, `assert_transition(current, target, context)`, `get_valid_next_states(current)`.
 
 ## Critérios de Aceite
-- [ ] Isola rigorosamente `QueueState` (`QUEUED`, `CLAIMED`, `RUNNING`, `COMPLETED`, `FAILED`) de `JobState` (18 estados do pipeline).
-- [ ] Permite transições legais documentadas (ex: `CI_PENDING` → `CI_PASSED`, `READY_FOR_HUMAN_APPROVAL` → `APPROVED_BY_HUMAN` → `PROMOTED`).
-- [ ] Lança `IllegalStateTransitionError` para qualquer salto inválido (ex: `CI_PENDING` → `PROMOTED`, `QUEUED` → `COMPLETED`).
-- [ ] Disponibiliza transições para os estados terminais `PROMOTED` e `FAILED`.
+- [x] Isola rigorosamente `QueueState` (`QUEUED`, `CLAIMED`, `RUNNING`, `COMPLETED`, `FAILED`) de `JobState` (18 estados do pipeline).
+- [x] Permite transições legais documentadas (ex: `CI_PENDING` → `CI_PASSED`, `READY_FOR_HUMAN_APPROVAL` → `APPROVED_BY_HUMAN` → `PROMOTED`).
+- [x] Lança `IllegalStateTransitionError` para qualquer salto inválido (ex: `CI_PENDING` → `PROMOTED`, `QUEUED` → `COMPLETED`).
+- [x] Disponibiliza transições para os estados terminais `PROMOTED` e `FAILED`.
 
 ## Testes Necessários
 * `tests/test_state_machine.py`:
