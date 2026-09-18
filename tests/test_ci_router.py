@@ -53,7 +53,7 @@ class TestCIRouter(unittest.TestCase):
         self.assertEqual(res["routed_to"], "review")
 
         job = self.sm.get_job("job_pass")
-        self.assertEqual(job["status"], "CI_PASSED")
+        self.assertEqual(job["status"], "REVIEW_PENDING")
         self.assertEqual(job["current_stage"], "review")
 
         pending_rev = self.qm.poll_queue("review")

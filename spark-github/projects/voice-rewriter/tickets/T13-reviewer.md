@@ -1,7 +1,7 @@
 # Ticket 13 — Reviewer de Contaminação Estilística e Fluidez
 
 **Fase:** FASE 8 — Review (FLUXO B)  
-**Status:** `NOT_STARTED`  
+**Status:** `DONE`  
 **Bloqueado por:** Ticket 10, Ticket 11, Ticket 12  
 **Worker Responsável:** Reviewer (Spark Task)  
 
@@ -24,10 +24,10 @@ Implementar o worker independente de revisão qualitativa que audita o candidato
 * Relatório qualitativo de revisão e job enfileirado em `queues/evaluation/` com estado `REVIEW_COMPLETED`.
 
 ## Critérios de Aceite
-- [ ] O Reviewer possui acesso autorizado a `source_material/` exclusivamente para auditoria de plágio e contaminação de frases.
-- [ ] Detecta calques estruturais e expressões copiadas do autor original.
-- [ ] Avalia cadência, naturalidade de leitura e preservação dos fatos presentes no outline.
-- [ ] Enfileira a tarefa na fila `queues/evaluation/`.
+- [x] O Reviewer possui acesso autorizado a `source_material/` exclusivamente para auditoria de plágio e contaminação de frases.
+- [x] Detecta calques estruturais e expressões copiadas do autor original.
+- [x] Avalia cadência, naturalidade de leitura e preservação dos fatos presentes no outline.
+- [x] Enfileira a tarefa na fila `queues/evaluation/`.
 
 ## Testes Necessários
 * `tests/test_reviewer_contract.py`:

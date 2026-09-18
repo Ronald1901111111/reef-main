@@ -25,10 +25,16 @@ class CIRouter:
         cand_version = lint_report.get("candidate_version", "v1")
 
         if status == "PASSED":
-            # CI_PASSED -> Enqueue in review
+            # CI_PASSED -> REVIEW_PENDING -> Enqueue in review
             state_manager.transition_job(
                 job_id=job_id,
                 target_status="CI_PASSED",
+                target_stage="review",
+                context={"lint_status": "PASSED"}
+            )
+            state_manager.transition_job(
+                job_id=job_id,
+                target_status="REVIEW_PENDING",
                 target_stage="review",
                 context={"lint_status": "PASSED"}
             )
