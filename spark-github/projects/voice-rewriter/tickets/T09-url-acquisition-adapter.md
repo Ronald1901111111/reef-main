@@ -1,7 +1,7 @@
 # Ticket 09 — URL Acquisition Adapter e Fallback de Transcrição
 
 **Fase:** FASE 4 — Ingestion (FLUXO B)  
-**Status:** `NOT_STARTED`  
+**Status:** `DONE`  
 **Bloqueado por:** Ticket 08  
 **Worker Responsável:** Ingestion Worker (Adapter)  
 
@@ -24,9 +24,9 @@ Implementar o adaptador dependente de rede para capturar legendas automáticas v
 * Transcrição bruta baixada e repassada ao Ingestion Core OU job transitado para `WAITING_FOR_TRANSCRIPT`.
 
 ## Critérios de Aceite
-- [ ] Obtém legendas públicas e entrega o texto bruto ao `cleaner.py`.
-- [ ] Se a URL não possuir legendas públicas ou falhar por bloqueio de rede, transita o estado global do job para `WAITING_FOR_TRANSCRIPT` e suspende o processamento sem quebrar a execução.
-- [ ] Ao receber a transcrição manual para um job em espera, retoma o fluxo a partir do Ingestion Core.
+- [x] Obtém legendas públicas e entrega o texto bruto ao `cleaner.py`.
+- [x] Se a URL não possuir legendas públicas ou falhar por bloqueio de rede, transita o estado global do job para `WAITING_FOR_TRANSCRIPT` e suspende o processamento sem quebrar a execução.
+- [x] Ao receber a transcrição manual para um job em espera, retoma o fluxo a partir do Ingestion Core.
 
 ## Testes Necessários
 * `tests/test_url_adapter.py`:
