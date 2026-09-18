@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VoiceRewriterEvaluationReport",
+  "description": "Voice similarity evaluation report measured against frozen calibration manifest.",
+  "type": "object",
+  "required": [
+    "job_id",
+    "candidate_version",
+    "calibration_manifest_path",
+    "voice_model_bundle_path",
+    "scores",
+    "veto_gates",
+    "recommendation",
+    "generated_at"
+  ],
+  "properties": {
+    "job_id": { "type": "string" },
+    "candidate_version": { "type": "string" },
+    "calibration_manifest_path": { "type": "string" },
+    "voice_model_bundle_path": { "type": "string" },
+    "scores": {
+      "type": "object",
+      "required": [
+        "functional_vocabulary_score",
+        "syntactic_cadence_score",
+        "rhetorical_alignment_score",
+        "factual_fidelity",
+        "source_style_contamination",
+        "composite_similarity_score"
+      ],
+      "properties": {
+        "functional_vocabulary_score": { "type": "number", "minimum": 0.0, "maximum": 10.0 },
+        "syntactic_cadence_score": { "type": "number", "minimum": 0.0, "maximum": 10.0 },
+        "rhetorical_alignment_score": { "type": "number", "minimum": 0.0, "maximum": 10.0 },
+        "factual_fidelity": { "type": "number", "minimum": 0.0, "maximum": 10.0 },
+        "source_style_contamination": { "type": "number", "minimum": 0.0, "maximum": 10.0 },
+        "composite_similarity_score": { "type": "number", "minimum": 0.0, "maximum": 10.0 }
+      }
+    },
+    "veto_gates": {
+      "type": "object",
+      "required": ["factual_fidelity_passed", "contamination_passed"],
+      "properties": {
+        "factual_fidelity_passed": { "type": "boolean" },
+        "contamination_passed": { "type": "boolean" }
+      }
+    },
+    "recommendation": {
+      "type": "string",
+      "enum": ["PROCEED_TO_HUMAN_APPROVAL", "NEEDS_ITERATION", "REJECTED"]
+    },
+    "generated_at": { "type": "string" }
+  }
+}
