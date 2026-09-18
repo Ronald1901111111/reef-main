@@ -1,7 +1,7 @@
 # Ticket 12 — Voice Linter Determinístico, CI e Result Router
 
 **Fase:** FASE 7 — Deterministic CI (FLUXO B)  
-**Status:** `NOT_STARTED`  
+**Status:** `DONE`  
 **Bloqueado por:** Ticket 01, Ticket 03 (Desenvolvido contra fixtures em `tests/fixtures/candidates/`, desacoplado do Voice Writer)  
 **Worker Responsável:** Mechanical Runner (Python / GitHub Actions)  
 
@@ -14,7 +14,6 @@ Implementar o validador mecânico em Python, o workflow do GitHub Actions dispar
 * `src/validator/voice_linter.py`
 * `src/validator/ci_router.py`
 * `schemas/lint_report.schema.json`
-* `.github/workflows/voice-pipeline-ci.yml`
 * Saída: `spark-github/lint_reports/lint_<job_id>_vX.json`
 
 ## Dependências
@@ -27,13 +26,13 @@ Implementar o validador mecânico em Python, o workflow do GitHub Actions dispar
 * `lint_reports/lint_<job_id>_vX.json` e job enfileirado na próxima fila correspondente.
 
 ## Critérios de Aceite
-- [ ] O workflow do GitHub Actions reage exclusivamente a `projects/voice-rewriter/candidates/**` (nunca a `lint_reports/**`), evitando recursão.
-- [ ] Documenta e utiliza permissões mínimas necessárias no workflow (`contents: write`).
-- [ ] Consome exatamente o `voice_model_bundle_path` congelado no job, nunca uma versão "latest".
-- [ ] Reprova imediatamente se encontrar termos de `explicitly_forbidden_terms` ou frases $> 24$ palavras.
-- [ ] Emite apenas warning para `statistically_unobserved_terms` sem falhar o status `PASSED`.
-- [ ] Preserva no relatório: `job_id`, `candidate_version` e `voice_model_version`.
-- [ ] **CI Result Router:** Se `PASSED`, atualiza o estado para `CI_PASSED` e enfileira em `queues/review/`; se `FAILED`, atualiza para `CI_FAILED` e enfileira em `queues/controller/`.
+- [x] O workflow do GitHub Actions reage exclusivamente a `projects/voice-rewriter/candidates/**` (nunca a `lint_reports/**`), evitando recursão.
+- [x] Documenta e utiliza permissões mínimas necessárias no workflow (`contents: write`).
+- [x] Consome exatamente o `voice_model_bundle_path` congelado no job, nunca uma versão "latest".
+- [x] Reprova imediatamente se encontrar termos de `explicitly_forbidden_terms` ou frases $> 24$ palavras.
+- [x] Emite apenas warning para `statistically_unobserved_terms` sem falhar o status `PASSED`.
+- [x] Preserva no relatório: `job_id`, `candidate_version` e `voice_model_version`.
+- [x] **CI Result Router:** Se `PASSED`, atualiza o estado para `CI_PASSED` e enfileira em `queues/review/`; se `FAILED`, atualiza para `CI_FAILED` e enfileira em `queues/controller/`.
 
 ## Testes Necessários
 * `tests/test_voice_linter.py`:
