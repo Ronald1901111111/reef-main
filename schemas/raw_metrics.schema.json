@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VoiceRewriterRawMetrics",
+  "description": "Deterministic statistical and stylometric distributions extracted from training corpus.",
+  "type": "object",
+  "required": [
+    "total_transcripts",
+    "total_words",
+    "total_sentences",
+    "sentence_length",
+    "punctuation_density",
+    "lexical_metrics",
+    "functional_ngrams",
+    "generated_at"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "total_transcripts": { "type": "integer", "minimum": 0 },
+    "total_words": { "type": "integer", "minimum": 0 },
+    "total_sentences": { "type": "integer", "minimum": 0 },
+    "sentence_length": {
+      "type": "object",
+      "required": ["mean", "std_dev", "min", "max", "median"],
+      "properties": {
+        "mean": { "type": "number" },
+        "std_dev": { "type": "number" },
+        "min": { "type": "integer" },
+        "max": { "type": "integer" },
+        "median": { "type": "number" }
+      }
+    },
+    "punctuation_density": {
+      "type": "object",
+      "properties": {
+        "commas_per_100_words": { "type": "number" },
+        "periods_per_100_words": { "type": "number" },
+        "question_marks_per_100_words": { "type": "number" },
+        "exclamation_marks_per_100_words": { "type": "number" },
+        "dashes_per_100_words": { "type": "number" },
+        "colons_per_100_words": { "type": "number" }
+      }
+    },
+    "lexical_metrics": {
+      "type": "object",
+      "required": ["type_token_ratio", "mtld", "unique_words"],
+      "properties": {
+        "type_token_ratio": { "type": "number" },
+        "mtld": { "type": "number" },
+        "unique_words": { "type": "integer" }
+      }
+    },
+    "functional_ngrams": {
+      "type": "object",
+      "properties": {
+        "top_bigrams": { "type": "array" },
+        "top_trigrams": { "type": "array" }
+      }
+    },
+    "fragmentation_rate": { "type": "number" },
+    "generated_at": { "type": "string" }
+  }
+}
