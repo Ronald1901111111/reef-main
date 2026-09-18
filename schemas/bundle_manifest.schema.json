@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VoiceRewriterBundleManifest",
+  "description": "Cryptographic integrity manifest and version metadata for immutable Voice Model Bundle.",
+  "type": "object",
+  "required": [
+    "bundle_version",
+    "profile_name",
+    "created_at",
+    "hashes"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "bundle_version": { "type": "string" },
+    "profile_name": { "type": "string" },
+    "created_at": { "type": "string" },
+    "hashes": {
+      "type": "object",
+      "required": [
+        "profile_hash",
+        "analysis_hash",
+        "prompt_hash",
+        "samples_manifest_hash",
+        "raw_metrics_hash"
+      ],
+      "properties": {
+        "profile_hash": { "type": "string", "minLength": 64, "maxLength": 64 },
+        "analysis_hash": { "type": "string", "minLength": 64, "maxLength": 64 },
+        "prompt_hash": { "type": "string", "minLength": 64, "maxLength": 64 },
+        "samples_manifest_hash": { "type": "string", "minLength": 64, "maxLength": 64 },
+        "raw_metrics_hash": { "type": "string", "minLength": 64, "maxLength": 64 }
+      }
+    },
+    "curated_samples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["sample_id", "filename", "sha256"],
+        "properties": {
+          "sample_id": { "type": "string" },
+          "filename": { "type": "string" },
+          "sha256": { "type": "string", "minLength": 64, "maxLength": 64 }
+        }
+      }
+    }
+  }
+}
