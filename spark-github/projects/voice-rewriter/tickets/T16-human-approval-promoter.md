@@ -1,7 +1,7 @@
 # Ticket 16 — Protocolo de Aprovação Humana Formal e Promoter
 
 **Fase:** FASE 11 — Approval (FLUXO B)  
-**Status:** `NOT_STARTED`  
+**Status:** `DONE`  
 **Bloqueado por:** Ticket 03, Ticket 15  
 **Worker Responsável:** Promoter / Controller  
 
@@ -26,9 +26,9 @@ Implementar a trava formal de governança que exige um artefato explícito assin
 * Roteiro promovido em `outputs/` e estado global atualizado para `PROMOTED`.
 
 ## Critérios de Aceite
-- [ ] Bloqueia qualquer tentativa de cópia para `outputs/` se o arquivo de aprovação formal não existir ou divergir de `job_id` / `candidate_version`.
-- [ ] O queue item do Promoter transita para `COMPLETED`, enquanto o estado global do job transita estritamente para `PROMOTED` (estado terminal definitivo de sucesso).
-- [ ] Nenhuma promoção automática ocorre sem o artefato formal de aprovação.
+- [x] Bloqueia qualquer tentativa de cópia para `outputs/` se o arquivo de aprovação formal não existir ou divergir de `job_id` / `candidate_version`.
+- [x] O queue item do Promoter transita para `COMPLETED`, enquanto o estado global do job transita estritamente para `PROMOTED` (estado terminal definitivo de sucesso).
+- [x] Nenhuma promoção automática ocorre sem o artefato formal de aprovação.
 
 ## Testes Necessários
 * `tests/test_promoter.py`:

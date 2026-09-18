@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VoiceRewriterApprovalArtifact",
+  "description": "Formal human approval artifact signed by the author/operator to authorize final promotion.",
+  "type": "object",
+  "required": [
+    "job_id",
+    "candidate_version",
+    "approved_by",
+    "approval_timestamp",
+    "decision",
+    "slug"
+  ],
+  "properties": {
+    "job_id": { "type": "string" },
+    "candidate_version": { "type": "string" },
+    "approved_by": { "type": "string" },
+    "approval_timestamp": { "type": "string" },
+    "decision": { "type": "string", "enum": ["APPROVED", "REJECTED"] },
+    "slug": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "notes": { "type": "string" }
+  }
+}
