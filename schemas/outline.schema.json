@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VoiceRewriterSemanticOutline",
+  "description": "Neutral causal outline representation stripped of original author stylistic idiosyncrasies.",
+  "type": "object",
+  "required": ["job_id", "source_summary", "blocks", "generated_at"],
+  "additionalProperties": false,
+  "properties": {
+    "job_id": { "type": "string" },
+    "source_summary": { "type": "string" },
+    "generated_at": { "type": "string" },
+    "blocks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "topico",
+          "afirmacao_ou_tese",
+          "evidencias_ou_exemplos",
+          "relacao_causal",
+          "ressalvas_ou_contrapontos"
+        ],
+        "properties": {
+          "topico": { "type": "string" },
+          "afirmacao_ou_tese": { "type": "string" },
+          "evidencias_ou_exemplos": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "relacao_causal": { "type": "string" },
+          "ressalvas_ou_contrapontos": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 # Ticket 10 — Semantic Extractor e Schema de De-styling Causal
 
 **Fase:** FASE 5 — Semantic Extraction (FLUXO B)  
-**Status:** `NOT_STARTED`  
+**Status:** `DONE`  
 **Bloqueado por:** Ticket 08 (Não depende de T09; testável via fixtures locais)  
 **Worker Responsável:** Semantic Extractor (Spark Task)  
 
@@ -25,9 +25,9 @@ Definir o schema e as instruções operacionais do Semantic Extractor para conve
 * `outline_<job_id>.json` estruturado e payload sanitizado enfileirado em `queues/writing/`.
 
 ## Critérios de Aceite
-- [ ] O outline captura obrigatoriamente para cada bloco: `topico`, `afirmacao_ou_tese`, `evidencias_ou_exemplos`, `relacao_causal` e `ressalvas_ou_contrapontos`.
-- [ ] Preserva dados numéricos, nomes próprios, fontes e perguntas norteadoras sem carregar os cacoetes do autor original.
-- [ ] Constrói o payload para `queues/writing/` aplicando a barreira de menor acesso: inclui apenas `outline_path`, `voice_model_bundle_path`, `job_id` e `iteration` (zero menção a `source_material`).
+- [x] O outline captura obrigatoriamente para cada bloco: `topico`, `afirmacao_ou_tese`, `evidencias_ou_exemplos`, `relacao_causal` e `ressalvas_ou_contrapontos`.
+- [x] Preserva dados numéricos, nomes próprios, fontes e perguntas norteadoras sem carregar os cacoetes do autor original.
+- [x] Constrói o payload para `queues/writing/` aplicando a barreira de menor acesso: inclui apenas `outline_path`, `voice_model_bundle_path`, `job_id` e `iteration` (zero menção a `source_material`).
 
 ## Testes Necessários
 * `tests/test_outline_schema.py`:
