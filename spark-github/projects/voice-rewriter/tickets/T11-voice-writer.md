@@ -1,7 +1,7 @@
 # Ticket 11 — Voice Writer com Barreira Estrutural de Menor Acesso
 
 **Fase:** FASE 6 — Writing (FLUXO B)  
-**Status:** `NOT_STARTED`  
+**Status:** `DONE`  
 **Bloqueado por:** Ticket 07, Ticket 10  
 **Worker Responsável:** Voice Writer (Spark Task)  
 
@@ -24,10 +24,10 @@ Implementar o worker de escrita que consome exclusivamente o outline semântico 
 * Roteiro candidato `candidate_<job_id>_vX.md` e estado global atualizado para `CI_PENDING`.
 
 ## Critérios de Aceite
-- [ ] O worker rejeita a execução se receber qualquer referência ou caminho a `source_material/`.
-- [ ] Estrutura o roteiro em Blocos de Produção (Hook, Desenvolvimento, Transições, CTA) com anotações de cadência (`[PAUSA]`, `[ÊNFASE]`) e notas visuais concisas.
-- [ ] Persiste o candidato versionado no repositório (`_v1.md`, `_v2.md`).
-- [ ] Preserva e não altera os valores congelados de `voice_model_bundle_path` e `calibration_manifest_path` no job.
+- [x] O worker rejeita a execução se receber qualquer referência ou caminho a `source_material/`.
+- [x] Estrutura o roteiro em Blocos de Produção (Hook, Desenvolvimento, Transições, CTA) com anotações de cadência (`[PAUSA]`, `[ÊNFASE]`) e notas visuais concisas.
+- [x] Persiste o candidato versionado no repositório (`_v1.md`, `_v2.md`).
+- [x] Preserva e não altera os valores congelados de `voice_model_bundle_path` e `calibration_manifest_path` no job.
 
 ## Testes Necessários
 * `tests/test_voice_writer_security.py`:
