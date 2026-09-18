@@ -1,0 +1,10 @@
+# Overrides explícitos fornecidos por humanos
+# Somente termos aqui definidos entram em explicitly_forbidden_terms
+explicitly_forbidden_terms:
+  - "top"
+  - "sinergia"
+  - "paradigma"
+
+suggested_style_preferences:
+  avoid_buzzwords: true
+  favor_direct_speech: true

@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VoiceRewriterVoiceProfile",
+  "description": "Qualitative voice rules, cognitive tone attributes, and vocabulary stratification.",
+  "type": "object",
+  "required": [
+    "voice_identity",
+    "tone_attributes",
+    "rhetorical_patterns",
+    "vocabulary_stratification",
+    "structural_rules"
+  ],
+  "properties": {
+    "voice_identity": { "type": "string" },
+    "tone_attributes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "rhetorical_patterns": {
+      "type": "object",
+      "required": ["hook_styles", "transition_markers", "cta_structures"],
+      "properties": {
+        "hook_styles": { "type": "array", "items": { "type": "string" } },
+        "transition_markers": { "type": "array", "items": { "type": "string" } },
+        "cta_structures": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "vocabulary_stratification": {
+      "type": "object",
+      "required": [
+        "characteristic_terms",
+        "observed_terms",
+        "rare_terms",
+        "statistically_unobserved_terms",
+        "explicitly_forbidden_terms"
+      ],
+      "properties": {
+        "characteristic_terms": { "type": "array", "items": { "type": "string" } },
+        "observed_terms": { "type": "array", "items": { "type": "string" } },
+        "rare_terms": { "type": "array", "items": { "type": "string" } },
+        "statistically_unobserved_terms": { "type": "array", "items": { "type": "string" } },
+        "explicitly_forbidden_terms": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "structural_rules": {
+      "type": "object",
+      "required": ["paragraph_spacing", "formatting_conventions"],
+      "properties": {
+        "paragraph_spacing": { "type": "string" },
+        "formatting_conventions": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

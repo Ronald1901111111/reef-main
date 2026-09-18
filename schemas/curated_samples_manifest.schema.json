@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VoiceRewriterCuratedSamplesManifest",
+  "description": "Manifest of high-signal few-shot exemplars extracted from the training corpus.",
+  "type": "object",
+  "required": ["samples"],
+  "properties": {
+    "samples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "sample_id",
+          "category",
+          "rhetorical_purpose",
+          "confidence",
+          "provenance"
+        ],
+        "properties": {
+          "sample_id": { "type": "string" },
+          "category": {
+            "type": "string",
+            "enum": [
+              "hook",
+              "technical_explanation",
+              "transition",
+              "analogy",
+              "argumentation",
+              "cta",
+              "closing"
+            ]
+          },
+          "rhetorical_purpose": { "type": "string" },
+          "confidence": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+          "provenance": {
+            "type": "object",
+            "required": ["source_file", "split"],
+            "properties": {
+              "source_file": { "type": "string" },
+              "split": { "type": "string", "enum": ["training"] }
+            }
+          }
+        }
+      }
+    }
+  }
+}
