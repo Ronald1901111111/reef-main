@@ -1,7 +1,7 @@
 # Índice Geral de Tickets: Voice-Rewriter
 
 **Projeto:** Voice-Rewriter (Subprojeto do REEF)  
-**Status Geral:** `IN_PROGRESS` (Tickets 01, 02 e 03 concluídos)  
+**Status Geral:** `IN_PROGRESS` (Tickets 01, 02, 03 e 04 concluídos)  
 **Total de Tickets:** 18  
 
 ---
@@ -13,7 +13,7 @@
 | **[T01](./T01-foundation-structure-schemas.md)** | Estrutura de Diretórios e Schemas de Estado e Filas | FASE 0 | Foundation | Nenhum | `DONE` |
 | **[T02](./T02-queue-manager-worker-runtime.md)** | Queue Manager, Contrato Operacional e Menor Acesso | FASE 0 | Foundation | T01 | `DONE` |
 | **[T03](./T03-state-machine-core.md)** | State Machine Core | FASE 0 | Foundation | T01 | `DONE` |
-| **[T04](./T04-corpus-provenance-splits.md)** | Proveniência do Corpus e Isolamento Training/Calibration | FASE 1 | Data Prep | T01 | `NOT_STARTED` |
+| **[T04](./T04-corpus-provenance-splits.md)** | Proveniência do Corpus e Isolamento Training/Calibration | FASE 1 | Data Prep | T01 | `DONE` |
 | **[T05](./T05-deterministic-profiler.md)** | Profiler Determinístico de Métricas Estilométricas | FASE 2 | Deterministic Profiler | T04 | `NOT_STARTED` |
 | **[T06](./T06-cognitive-voice-profiler.md)** | Cognitive Voice Profiler e Estratificação de Vocabulário | FASE 3 | Cognitive Profiler (Spark) | T05 | `NOT_STARTED` |
 | **[T07](./T07-voice-model-bundle-compiler.md)** | Voice Model Bundle Imutável e Compilador de Prompt | FASE 3 | Profiler / Compiler | T06 | `NOT_STARTED` |

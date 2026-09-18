@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VoiceRewriterTranscriptMetadata",
+  "description": "Provenance and validation metadata for voice corpus transcripts.",
+  "type": "object",
+  "required": [
+    "transcript_id",
+    "title",
+    "speaker_verified",
+    "authorship_verified",
+    "contains_guests",
+    "eligible_for_voice_learning",
+    "split",
+    "source_type",
+    "word_count",
+    "created_at",
+    "sha256"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "transcript_id": { "type": "string", "minLength": 1 },
+    "title": { "type": "string" },
+    "video_id": { "type": ["string", "null"] },
+    "speaker_verified": { "type": "boolean" },
+    "authorship_verified": { "type": "boolean" },
+    "contains_guests": { "type": "boolean" },
+    "eligible_for_voice_learning": { "type": "boolean" },
+    "split": { "type": "string", "enum": ["training", "calibration", "excluded"] },
+    "source_type": { "type": "string" },
+    "word_count": { "type": "integer", "minimum": 0 },
+    "duration_seconds": { "type": ["number", "null"] },
+    "recorded_at": { "type": ["string", "null"] },
+    "created_at": { "type": "string" },
+    "sha256": { "type": "string", "minLength": 64, "maxLength": 64 }
+  }
+}

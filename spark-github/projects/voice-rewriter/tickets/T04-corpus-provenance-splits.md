@@ -1,7 +1,7 @@
 # Ticket 04 — Proveniência do Corpus e Isolamento Training/Calibration
 
 **Fase:** FASE 1 — Voice Corpus  
-**Status:** `NOT_STARTED`  
+**Status:** `DONE`  
 **Bloqueado por:** Ticket 01  
 **Worker Responsável:** Data Prep / Foundation  
 
@@ -29,9 +29,9 @@ Implementar o contrato de metadados de proveniência e o validador de integridad
 * `src/corpus/corpus_validator.py` e manifesto de calibração gerado `calibration_manifests/calibration_v1.json`.
 
 ## Critérios de Aceite
-- [ ] Rejeita para treino qualquer transcrição onde `eligible_for_voice_learning` seja `false`, `contains_guests` seja `true` ou `authorship_verified` seja `false`.
-- [ ] Garante que nenhum arquivo em `calibration/` apareça ou seja referenciado no conjunto de `training/`.
-- [ ] Gera `calibration_manifests/calibration_v1.json` contendo a lista exata e hashes SHA-256 de todos os arquivos de calibração vigentes.
+- [x] Rejeita para treino qualquer transcrição onde `eligible_for_voice_learning` seja `false`, `contains_guests` seja `true` ou `authorship_verified` seja `false`.
+- [x] Garante que nenhum arquivo em `calibration/` apareça ou seja referenciado no conjunto de `training/`.
+- [x] Gera `calibration_manifests/calibration_v1.json` contendo a lista exata e hashes SHA-256 de todos os arquivos de calibração vigentes.
 
 ## Testes Necessários
 * `tests/test_corpus_integrity.py`:
