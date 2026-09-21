@@ -17,8 +17,8 @@ jobs:
   validate-package:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Run unit tests
@@ -26,7 +26,7 @@ jobs:
       - name: Package all current and candidate trees
         run: cd spark-github && python -m tools.package_repository --repo-root . --out build/spark-bundles
       - name: Upload Spark bundles
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: spark-bundles-${{ github.run_id }}
           path: spark-github/build/spark-bundles
